@@ -1,0 +1,14 @@
+**/*.swp
+*.egg-info
+**/*.pyc
+**/__pycache__
+
+**/_*
+**/log*.txt
+
+**/.ipynb_checkpoints
+notebooks/outputs
+notebooks/data
+
+clean_cache.sh
+notebooks/*.csv
