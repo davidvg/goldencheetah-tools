@@ -1,0 +1,7 @@
+app:
+    athlete: david
+    timezone: Europe/Madrid
+    gc_database_path: /home/david/Documentos/goldencheetah
+
+summary:
+    csv_filename: activities.csv

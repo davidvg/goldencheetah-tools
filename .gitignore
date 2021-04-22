@@ -12,3 +12,4 @@ notebooks/data
 
 clean_cache.sh
 notebooks/*.csv
+**/activities.csv
