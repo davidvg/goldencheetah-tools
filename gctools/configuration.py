@@ -16,6 +16,7 @@ class PathConfiguration(object):
     def __init__(self):
         self._gc_path = ''  # TODO: validate string
         self._athlete_path = ''
+        self._activities_path = ''
 
     def _set_root(self, root):
         self._gc_path = root
@@ -28,6 +29,12 @@ class PathConfiguration(object):
 
     def _get_athlete_path(self):
         return self._athlete_path
+
+    def _set_activities_path(self, path):
+        self._activities_path = path
+
+    def _get_activities_path(self):
+        return self._activities_path
 
 
 class Configuration(object):
@@ -95,7 +102,7 @@ class Configuration(object):
     def _append_to_path(self, path, append):
         path = self._validate_path_string(path)
         res = path + append
-        # logger.debug('Joined path: {}'.format(res))
+        logger.debug('Joined path: {}'.format(res))
         return res
 
     def _make_athlete_path(self):
@@ -105,13 +112,18 @@ class Configuration(object):
         logger.debug('Athlete path: {}'.format(athlete_path))
         self._cfg_paths._set_athlete_path(athlete_path)
 
+    def _make_activities_path(self):
+        athlete_path = self._get_athlete_path()
+        activities_path = self._append_to_path(athlete_path, 'activities')
+        self._cfg_paths._set_activities_path(activities_path)
+
     def _make_paths(self):
         """Generate all the internal paths needed by the app
         """
         # TODO: Make activities path
         # TODO: Make cache path
         self._make_athlete_path()
-
+        self._make_activities_path()
 
     # Wrappers for PathConfiguration
     def _set_root(self):
@@ -121,8 +133,15 @@ class Configuration(object):
 
     def _get_root(self):
         cfg_paths = self.get_cfg_paths()
-        return cfg_paths._get_root()
+        res = cfg_paths._get_root()
+        return res
 
     def _get_athlete_path(self):
         cfg_paths = self.get_cfg_paths()
-        return cfg_paths._get_athlete_path()
+        res = cfg_paths._get_athlete_path()
+        return res
+
+    def _get_activities_path(self):
+        cfg_paths = self.get_cfg_paths()
+        res = cfg_paths._get_activities_path()
+        return res
